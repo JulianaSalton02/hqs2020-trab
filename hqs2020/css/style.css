@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Boogaloo|Raleway');
+
+.valor {
+	color: #F00;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.w-100 {
+	height: 300px;
+}

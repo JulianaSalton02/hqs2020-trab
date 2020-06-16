@@ -1,0 +1,20 @@
+.bg-login-image {
+	background: url(../img/login.jpg) bottom center;
+	background-size: 100%;
+}
+
+.parsley-required {
+	color: #F00;
+	list-style: none;
+	font-weight: bold;
+	margin: 10px -20px;
+}
+
+iframe {
+	margin: 10px 0;
+	border: 1px solid #ccc;
+}
+
+.margin, label {
+	margin-top: 15px;
+}
