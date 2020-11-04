@@ -6,18 +6,18 @@
 
 	if ( $op == "add" ) {
 
-		$sql = "select id, titulo, valor from quadrinho where id = ? limit 1";
+		$sql = "select id, Nome, ValorUnitario, quantidade from produto_pedido where id = ? limit 1";
 		$consulta = $pdo->prepare($sql);
 		$consulta->bindParam(1, $produto, PDO::PARAM_INT);
 		$consulta->execute();
-		$linha 		= $consulta->fetch(PDO::FETCH_OBJ);
+		$linha= $consulta->fetch(PDO::FETCH_OBJ);
 
 		if ( isset ( $linha->id ) ) { 
-			$id 	= 	$linha->id;
-			$titulo =	$linha->titulo;
-			$valor  =	$linha->valor;
+			$id         	= 	$linha->id;
+			$Nome           =	$linha->Nome;
+			$ValorUnitario  =	$linha->ValorUnitario;
 
-			$_SESSION["carrinho"][$id] = array("id"=>$id, "titulo"=>$titulo, "valor"=>$valor, "quantidade"=>1);
+			$_SESSION["carrinho"][$id] = array("id"=>$id, "Nome"=>$Nome, "ValorUnitario"=>$ValorUnitario, "quantidade"=>1);
 		}
 
 	} else if ( $op == "quantidade" ) {
@@ -58,12 +58,12 @@
 
 		foreach ( $_SESSION["carrinho"] as $c ) {
 			
-			$id 		= 	$c["id"];
-			$titulo 	=	$c["titulo"];
-			$valor  	=	$c["valor"];
-			$quantidade =	$c["quantidade"];
+			$id 	    	= 	$c["id"];
+			$Nome        	=	$c["Nome"];
+			$ValorUnitario 	=	$c["ValorUnitario"];
+			$quantidade    =	$c["quantidade"];
 
-			$total = $valor * $quantidade;
+			$total = $ValorUnitario * $quantidade;
 
 			$geral = $total + $geral;
 
@@ -71,13 +71,13 @@
 			$total = number_format($total,2,",",".");
 
 			echo "<tr>
-				<td>$titulo</td>
-				<td>$valor</td>
+				<td>$Nome</td>
+				<td>$ValorUnitario</td>
 				<td>
 					<input type='text' value='$quantidade' onblur='adicionaQuantidade($id, this.value)' class='form-control'>
 				</td>
 				<td>$total</td>
-				<td><a href='carrinho/del/$id' class='btn btn-danger'>Excluir</a></td>
+				<td><a href='carrinho/del/$id' class='btn btn-danger btn-sn'>Excluir</a></td>
 			</tr>";
 		}
 		$geral = number_format($geral,2,",",".");
